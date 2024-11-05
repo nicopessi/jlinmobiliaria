@@ -81,25 +81,10 @@ const Agentt = () => {
                     </Agent.List>
                     <Agent.Social>
                       <Agent.List>
-                        <Agent.ListItem>
-                          {" "}
-                          <Agent.ExternalAnchor to={agent.social.facebook}>
-                            <Agent.Icon name="fab fa-facebook-f" />
-                          </Agent.ExternalAnchor>
-                        </Agent.ListItem>
-                        <Agent.ListItem>
-                          <Agent.ExternalAnchor to={agent.social.twitter}>
-                            <Agent.Icon name="fab fa-twitter" />
-                          </Agent.ExternalAnchor>
-                        </Agent.ListItem>
+                        
                         <Agent.ListItem>
                           <Agent.ExternalAnchor to={agent.social.linkedin}>
                             <Agent.Icon name="fab fa-linkedin" />
-                          </Agent.ExternalAnchor>
-                        </Agent.ListItem>
-                        <Agent.ListItem>
-                          <Agent.ExternalAnchor to={agent.social.instagram}>
-                            <Agent.Icon name="fab fa-instagram" />
                           </Agent.ExternalAnchor>
                         </Agent.ListItem>
                       </Agent.List>
@@ -113,34 +98,11 @@ const Agentt = () => {
                   </Agent.About>
                 </Agent.InfoBottom>
               </Agent.Info>
-              <Agent.Listing>
-                <Agent.ListingHeader>
-                  <Agent.Title>My Listing</Agent.Title>
-                  <CategoryBtns
-                    categories={categories}
-                    count={agent.listings.length}
-                    setCategoryName={setCategoryName}
-                    properties={properties}
-                    agent={agent}
-                    setProperties={setProperties}
-                    setCategoryCount={setCategoryCount}
-                  />
-                </Agent.ListingHeader>
-                <Agent.Title special="true">{`${categoryName} (${categoryCount})`}</Agent.Title>
-                <Agent.ListingContent>
-                  {properties.map((featured) => (
-                    <ListingItemContainer
-                      key={agent.id}
-                      featured={featured}
-                      width="49%"
-                    />
-                  ))}
-                </Agent.ListingContent>
-              </Agent.Listing>
+              
             </Agent.Left>
             <Agent.Right>
               <ContactAgentContainer property={contactAgent} />
-              <PropertyRelatedContainer featured={featuredProperties} />
+              
             </Agent.Right>
           </Agent.Content>
         </Section.InnerContainer>

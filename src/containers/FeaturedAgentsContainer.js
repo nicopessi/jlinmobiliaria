@@ -19,7 +19,7 @@ const FeaturedAgentsContainer = () => {
     <Section bgColor="--bs-fade-info">
       <Section.InnerContainer>
         <Section.Header>
-          <Section.Title>Our Featured Agents</Section.Title>
+          <Section.Title>Nuestros Agentes</Section.Title>
         </Section.Header>
         <Section.Content>
           {agentsList.map((agent) => (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import links from "../constants/routes/nav-links";
 import { HeaderWrapper, Banner, Jumbotron } from "../components";
 
+import '../styles/sidenavigation.css'
 import { AdvancedSearchContainer, SideNavigationContainer } from "./index";
 
 const HeaderContainer = ({ bg, source }) => {
@@ -29,7 +30,7 @@ const HeaderContainer = ({ bg, source }) => {
         <HeaderWrapper.Container>
           <HeaderWrapper.Title bg={bg}>
             <HeaderWrapper.Link bg={bg} fixed={fixed} to="/">
-              Real Home
+            <img src={`${process.env.PUBLIC_URL}/images/logo/logojl.png`} alt="Logo" className="logoJl" />
             </HeaderWrapper.Link>
           </HeaderWrapper.Title>
           <HeaderWrapper.LinksContainer>
@@ -42,13 +43,7 @@ const HeaderContainer = ({ bg, source }) => {
                 </HeaderWrapper.Item>
               ))}
             </HeaderWrapper.List>
-            <HeaderWrapper.List>
-              <HeaderWrapper.Item>
-                <HeaderWrapper.Anchor to="/add-listing" special="true">
-                  Add Listing
-                </HeaderWrapper.Anchor>
-              </HeaderWrapper.Item>
-            </HeaderWrapper.List>
+            
             <HeaderWrapper.List side="side">
               <HeaderWrapper.Item>
                 <HeaderWrapper.Button onClick={handleSideNavigation}>
@@ -62,10 +57,9 @@ const HeaderContainer = ({ bg, source }) => {
       {bg === "true" && (
         <Jumbotron>
           <Jumbotron.Left>
-            <Jumbotron.Title>Find The Home You Deserve With Us</Jumbotron.Title>
+            <Jumbotron.Title>Compra y vende con confianza, estamos con vos.</Jumbotron.Title>
             <Jumbotron.Text>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat,
-              exercitationem.
+            Tu aliado en cada transacción inmobiliaria.
             </Jumbotron.Text>
           </Jumbotron.Left>
           <Jumbotron.Right>

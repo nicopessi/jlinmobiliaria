@@ -16,12 +16,16 @@ import {
   Google,
   Apple,
   ExternalAnchor,
+  LogoFooter,
 } from "./styles/footer";
+
 
 const Footer = ({ children, ...restProps }) => {
   return <Container {...restProps}>{children}</Container>;
 };
-
+Footer.LogoFooter = ({ children, ...restProps }) => {
+  return <LogoFooter {...restProps}>{children}</LogoFooter>;
+}
 Footer.Container = ({ children, ...restProps }) => {
   return <InnerContainer {...restProps}>{children}</InnerContainer>;
 };

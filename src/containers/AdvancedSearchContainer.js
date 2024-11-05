@@ -42,13 +42,13 @@ const AdvancedSearchContainer = () => {
   return (
     <FormWrapper>
       <FormWrapper.Header>
-        <FormWrapper.Title>Advanced Search</FormWrapper.Title>
+        <FormWrapper.Title>Busqueda Avanzada</FormWrapper.Title>
       </FormWrapper.Header>
       <FormWrapper.Content>
         <Form>
           <Form.FormGroup>
             <Form.Select>
-              <Form.Option defaultValue>Types</Form.Option>
+              <Form.Option defaultValue>Tipo</Form.Option>
               {listedIn.map((type) => (
                 <Form.Option key={type}>{type}</Form.Option>
               ))}
@@ -56,7 +56,7 @@ const AdvancedSearchContainer = () => {
           </Form.FormGroup>
           <Form.FormGroup>
             <Form.Select>
-              <Form.Option defaultValue>Counties</Form.Option>
+              <Form.Option defaultValue>Ubicación</Form.Option>
               {counties.map((county) => (
                 <Form.Option key={county}>{county}</Form.Option>
               ))}
@@ -64,7 +64,7 @@ const AdvancedSearchContainer = () => {
           </Form.FormGroup>
           <Form.FormGroup>
             <Form.Select>
-              <Form.Option defaultValue>Categories</Form.Option>
+              <Form.Option defaultValue>Categorias</Form.Option>
               {categories.map((category) => (
                 <Form.Option key={category}>{category}</Form.Option>
               ))}
@@ -72,7 +72,7 @@ const AdvancedSearchContainer = () => {
           </Form.FormGroup>
           <Form.FormGroup>
             <Form.Select>
-              <Form.Option defaultValue>Bed Rooms</Form.Option>
+              <Form.Option defaultValue>Habitaciones</Form.Option>
               {rooms.map((room) => (
                 <Form.Option key={Math.random(room)}>{room}</Form.Option>
               ))}
@@ -81,7 +81,7 @@ const AdvancedSearchContainer = () => {
           <Form.FormGroup>
             <Form.Span>
               {" "}
-              Price range: Ksh {priceFormat(+priceRange)} to Ksh{" "}
+              Precio: U$D {priceFormat(+priceRange)} a U$D {" "}
               {priceFormat(maxPrice)}
             </Form.Span>
             <Form.RangeInput
@@ -93,10 +93,10 @@ const AdvancedSearchContainer = () => {
             />
           </Form.FormGroup>
           <Form.FormGroup>
-            <Form.Input type="text" placeholder="Search Term" />
+            <Form.Input type="text" placeholder="Termino de busqueda" />
           </Form.FormGroup>
           <Form.FormGroup>
-            <Form.SubmitInput type="submit" value="Search" />
+            <Form.SubmitInput type="submit" value="Buscar" />
           </Form.FormGroup>
         </Form>
       </FormWrapper.Content>

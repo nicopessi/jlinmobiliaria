@@ -8,20 +8,17 @@ const price = (price) => {
 const agents = [
   {
     id: 1,
-    name: "Kevin Caster",
-    email: "kevinn@gmail.com",
-    phone: "+2572067895",
-    address: "P.O BOX 2456 Nairobi",
-    county: "Nairboi",
-    town: "Nairobi",
+    name: "Ludmila Camiscia",
+    email: "ludmilacamiscia@gmail.com",
+    phone: "3416120037",
+    address: "Belgrano 1012",
+    county: "Carcaraña",
+    town: "Santa Fe",
     photo: "agent2.jpg",
 
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
     social: {
-      facebook: "https://www.facebook.com/kevin.caster.9655/",
-      instagram: "https://www.facebook.com/kevin.caster.9655/",
-      twitter: "https://www.facebook.com/kevin.caster.9655/",
       linkedin: "https://www.facebook.com/kevin.caster.9655/",
     },
     featured: true,
@@ -107,29 +104,8 @@ const agents = [
         listedIn: "rentals",
         category: "Houses",
       },
-    ],
-  },
   {
-    id: 2,
-    name: "Priscilla Frankson",
-    email: "priscilla@gmail.com",
-    phone: "+2572067895",
-    address: "P.O BOX 2456 Nairobi",
-    county: "Kisumu",
-    town: "Kisumu",
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
-    social: {
-      facebook: "https://www.facebook.com/kevin.caster.9655/",
-      instagram: "https://www.facebook.com/kevin.caster.9655/",
-      twitter: "https://www.facebook.com/kevin.caster.9655/",
-      linkedin: "https://www.facebook.com/kevin.caster.9655/",
-    },
-    featured: true,
-    photo: "agent4.jpg",
-    listings: [
-      {
-        id: 1,
+        id: 3,
         title: "Apartment for rent",
         slug: "apartment-for-rent",
         price: price(35000),
@@ -170,7 +146,7 @@ const agents = [
         category: "Apartments",
       },
       {
-        id: 2,
+        id: 4,
         title: "House for Sell",
         slug: "house-for-sell",
         price: price(35000),
@@ -209,29 +185,8 @@ const agents = [
         listedIn: "rentals",
         category: "Houses",
       },
-    ],
-  },
-  {
-    id: 3,
-    name: "Joram Davies",
-    email: "joram@gmail.com",
-    phone: "+2572067895",
-    address: "P.O BOX 2456 Nairobi",
-    county: "Nairboi",
-    town: "Nairobi",
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
-    social: {
-      facebook: "https://www.facebook.com/kevin.caster.9655/",
-      instagram: "https://www.facebook.com/kevin.caster.9655/",
-      twitter: "https://www.facebook.com/kevin.caster.9655/",
-      linkedin: "https://www.facebook.com/kevin.caster.9655/",
-    },
-    photo: "agent3.jpg",
-    featured: true,
-    listings: [
       {
-        id: 1,
+        id: 5,
         title: "Apartment for rent",
         slug: "apartment-for-rent",
         price: price(35000),
@@ -272,7 +227,7 @@ const agents = [
         category: "Apartments",
       },
       {
-        id: 2,
+        id: 6,
         title: "House for Sell",
         slug: "house-for-sell",
         price: price(35000),
@@ -311,29 +266,9 @@ const agents = [
         listedIn: "rentals",
         category: "Apartments",
       },
-    ],
-  },
-  {
-    id: 4,
-    name: "Joram Davies",
-    email: "joram@gmail.com",
-    phone: "+2572067895",
-    address: "P.O BOX 2456 Nairobi",
-    county: "Nairboi",
-    town: "Nairobi",
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
-    social: {
-      facebook: "https://www.facebook.com/kevin.caster.9655/",
-      instagram: "https://www.facebook.com/kevin.caster.9655/",
-      twitter: "https://www.facebook.com/kevin.caster.9655/",
-      linkedin: "https://www.facebook.com/kevin.caster.9655/",
-    },
-    photo: "agent3.jpg",
-    featured: true,
-    listings: [
+  
       {
-        id: 1,
+        id: 7,
         title: "Apartment for rent",
         slug: "apartment-for-rent",
         price: price(35000),
@@ -374,7 +309,7 @@ const agents = [
         category: "Apartments",
       },
       {
-        id: 2,
+        id: 8,
         title: "House for Sell",
         slug: "house-for-sell",
         price: price(35000),
@@ -414,7 +349,8 @@ const agents = [
         category: "Apartments",
       },
     ],
-  },
-];
+  }
+]
 
+  
 export default agents;

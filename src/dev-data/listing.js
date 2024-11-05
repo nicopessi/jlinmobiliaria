@@ -25,7 +25,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Elizabeth Keen",
+      name: "Ludmila Camiscia",
       image: "agent1.jpg",
     },
     features: {
@@ -66,7 +66,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Kevin Caster",
+      name: "Ludmila Camiscia",
       image: "agent3.jpg",
     },
     features: {
@@ -106,7 +106,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Elizabeth Keen",
+      name: "Ludmila Camiscia",
       image: "agent4.jpg",
     },
     features: {
@@ -146,7 +146,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Priscilla Frankson",
+      name: "Ludmila Camiscia",
       image: "agent2.jpg",
     },
     features: {
@@ -186,7 +186,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Joram Davies",
+      name: "Ludmila Camiscia",
       image: "agent1.jpg",
     },
     features: {
@@ -226,7 +226,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Kevin Caster",
+      name: "Ludmila Camiscia",
       image: "agent2.jpg",
     },
     features: {
@@ -266,7 +266,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Laura Ray",
+      name: "Ludmila Camiscia",
       image: "agent1.jpg",
     },
     features: {
@@ -306,7 +306,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Elizabeth Keen",
+      name: "Ludmila Camiscia",
       image: "agent4.jpg",
     },
     features: {
@@ -346,7 +346,7 @@ const listing = [
       "Fire Place",
     ],
     agent: {
-      name: "Edward Johnson",
+      name: "Ludmila Camiscia",
       image: "agent4.jpg",
     },
     features: {

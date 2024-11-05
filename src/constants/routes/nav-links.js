@@ -1,19 +1,19 @@
 const links = [
   {
-    name: "Home",
+    name: "Inicio",
     to: "/",
   },
   {
-    name: "Listing",
+    name: "Propiedades",
     to: "/listing",
   },
   {
-    name: "Agents",
+    name: "Nosotros",
     to: "/agents",
   },
   {
-    name: "login",
-    to: "/login",
+    name: "Servicios",
+    to: "/service",
   },
 ];
 

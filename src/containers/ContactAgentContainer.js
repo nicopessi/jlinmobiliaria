@@ -16,7 +16,7 @@ const ContactAgentContainer = ({ property }) => {
           <Property.ContactList>
             <Property.ListItem>
               <Property.Icon name="fas fa-phone-alt"></Property.Icon>
-              <Property.Text>+254720843306</Property.Text>
+              <Property.Text>+54 3416120037</Property.Text>
             </Property.ListItem>
           </Property.ContactList>
         </Property.ContactItem>

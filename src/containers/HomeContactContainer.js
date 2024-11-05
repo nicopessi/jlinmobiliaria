@@ -9,26 +9,23 @@ const HomeContactContainer = () => {
         <Section.Content>
           <Section.Flex>
             <Section.FlexItem width="70%">
-              <Section.SubTitle size="1">Contact Us</Section.SubTitle>
+              <Section.SubTitle size="1">Contáctanos</Section.SubTitle>
               <Section.Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non,
-                nemo dolorem amet cupiditate sequi cum?
+              Si tienes preguntas sobre nuestras propiedades a la venta, alquiler o cualquier servicio que ofrecemos, no dudes en comunicarte con nosotros. Nuestro equipo está listo para ayudarte a encontrar la opción que mejor se adapte a tus necesidades.
               </Section.Text>
               <Section.Flex>
-                <Section.FlexItem width="50%">
-                  <Section.SubTitle>We Will Get In Touch</Section.SubTitle>
+                <Section.FlexItem width="70%">
+                  <Section.SubTitle>Nos Pondremos en Contacto</Section.SubTitle>
                   <Section.Text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non,
+                  Respondenos sobre la compra o venta de propiedades en un plazo de 24 a 48 horas. Tu consulta es importante para nosotros.
                   </Section.Text>
                 </Section.FlexItem>
-                <Section.FlexItem width="50%">
-                  <Section.SubTitle>
-                    Get Instant Support From Us
+                <Section.FlexItem width="70%">
+                  <Section.SubTitle >
+                  Obtén Soporte Instantáneo
                   </Section.SubTitle>
                   <Section.Text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non,
+                  Ofrecemos asistencia inmediata para guiarte en la compra, venta o alquiler de propiedades. Contáctanos y te ayudaremos de inmediato.
                   </Section.Text>
                 </Section.FlexItem>
               </Section.Flex>
@@ -36,17 +33,17 @@ const HomeContactContainer = () => {
             <Section.FlexItem width="30%" bg="true">
               <Form>
                 <Form.FormGroup>
-                  <Form.Input type="text" placeholder="Your Name" />
+                  <Form.Input type="text" placeholder="Nombre" />
                 </Form.FormGroup>
                 <Form.FormGroup>
-                  <Form.Input type="text" placeholder="Your Email" />
+                  <Form.Input type="text" placeholder="Direccion de Email" />
                 </Form.FormGroup>
                 <Form.FormGroup>
-                  <Form.Input type="text" placeholder="Your Phone Number" />
+                  <Form.Input type="text" placeholder="Numero de telefono" />
                 </Form.FormGroup>
                 <Form.FormGroup>
                   <Form.TextArea
-                    placeholder="Your Message"
+                    placeholder="Mensaje"
                     name=""
                     id=""
                     cols="30"
@@ -54,7 +51,7 @@ const HomeContactContainer = () => {
                 </Form.FormGroup>
 
                 <Form.FormGroup>
-                  <Form.SubmitInput type="submit" value="Send Message" />
+                  <Form.SubmitInput type="submit" value="Enviar" />
                 </Form.FormGroup>
               </Form>
             </Section.FlexItem>

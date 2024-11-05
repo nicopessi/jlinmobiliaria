@@ -19,7 +19,7 @@ const FeaturedListingContainer = () => {
     <Section bgColor="--bs-light">
       <Section.InnerContainer>
         <Section.Header>
-          <Section.Title>Our Featured Listing</Section.Title>
+          <Section.Title>Nuestras propiedades destacadas:</Section.Title>
         </Section.Header>
         <Section.Content>
           {featuredProperties.map((featured) => (

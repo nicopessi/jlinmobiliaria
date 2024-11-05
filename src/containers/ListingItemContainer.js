@@ -41,7 +41,8 @@ const ListingItemContainer = ({ featured, width }) => {
               />
             </Listing.AgentImageContainer>
             <Listing.AgentName>
-              <Listing.Anchor to={`/agents/${featured.agent.name}`}>
+              
+              <Listing.Anchor to={`/agent/${1}`}>
                 {featured.agent.name}
               </Listing.Anchor>
             </Listing.AgentName>

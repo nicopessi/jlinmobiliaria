@@ -1,6 +1,11 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
+export const LogoFooter = styled.div`
+    width: 100px;
+    display: flex;
+    `;
+
 export const Container = styled.div`
   background-color: #1e224a;
   color: var(--bs-white);

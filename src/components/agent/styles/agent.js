@@ -146,7 +146,7 @@ export const ExternalAnchor = styled.a``;
 export const Social = styled.div`
   background-color: var(--bs-blue);
   padding: 8px;
-  width: 80%;
+  width: 15%;
   margin: 20px 0px;
   border-radius: 3px;
   box-shadow: var(--primary-box-shadow);
