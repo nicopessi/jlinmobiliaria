@@ -5,12 +5,14 @@ import {
   FeaturedAgentsContainer,
   HomeContactContainer,
   FooterContainer,
+  Service,
 } from "../containers";
 
 const Home = () => {
   return (
     <>
       <HeaderContainer bg="true" source="/images/banners/banner4.jpg" />
+      <Service />
       <FeaturedListingContainer />
       <FeaturedAgentsContainer />
       <HomeContactContainer />

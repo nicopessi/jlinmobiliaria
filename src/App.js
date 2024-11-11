@@ -12,6 +12,7 @@ import {
   UserProfile,
   Messages,
   Password,
+  AddLisiting,
   AdminListingList,
   AdminAgentsList,
   AgentListing,
@@ -33,6 +34,7 @@ const App = () => {
         <Route exact path="/profile" component={UserProfile} />
         <Route exact path="/messages" component={Messages} />
         <Route exact path="/change-password" component={Password} />
+        <Route path="/add-listing/:id?" component={AddLisiting} />
         <Route exact path="/all-listing" component={AdminListingList} />
         <Route exact path="/all-agents" component={AdminAgentsList} />
         <Route exact path="/mylisting" component={AgentListing} />

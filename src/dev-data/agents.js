@@ -17,7 +17,7 @@ const agents = [
     photo: "agent2.jpg",
 
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
+      "Ludmila Antonela Camiscia. Martillera publica y Corredora inmobiliaria Mat N° 1729. Graduada en Universidad Siglo XXI. ",
     social: {
       linkedin: "https://www.facebook.com/kevin.caster.9655/",
     },

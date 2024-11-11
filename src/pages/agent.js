@@ -92,7 +92,7 @@ const Agentt = () => {
                   </Agent.TopRight>
                 </Agent.InfoTop>
                 <Agent.InfoBottom>
-                  <Agent.Title>About Me</Agent.Title>
+                  <Agent.Title>Acerca de mí</Agent.Title>
                   <Agent.About>
                     <Agent.Text>{agent.about}</Agent.Text>
                   </Agent.About>
