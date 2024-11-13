@@ -8,19 +8,17 @@ export { default as Agents } from "./agents";
 export { default as Section } from "./sections";
 export { default as Grid } from "./grid";
 export { default as Footer } from "./footer";
-export { default as Login } from "./login";
-export { default as Signup } from "./signup";
-export { default as Forgot } from "./forgot";
+
 export { default as Property } from "./property";
 export { default as Agent } from "./agent";
-export { default as Dashboard } from "./dashboard";
+
 export { default as Summary } from "./summary";
 export { default as Profile } from "./profile";
 export { default as Inbox } from "./inbox";
-export { default as Password } from "./password";
-export { default as Add } from "./add";
-export { default as AdminListing } from "./admin_listing";
+
+
+
 export { default as Table } from "./table";
-export { default as AdminAgents } from "./admin_agents";
+
 export { default as SideNavigation } from "./sidenav";
 

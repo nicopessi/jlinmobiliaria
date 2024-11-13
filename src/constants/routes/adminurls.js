@@ -42,12 +42,7 @@ export const adminurls = [
       { url: "/all-agents", name: "All Agents", icon: "far fa-list-alt" },
     ],
   },
-  {
-    url: "change-password",
-    name: "Change Password",
-    icon: "fas fa-unlock-alt",
-    subUrl: false,
-  },
+  
   {
     url: "#",
     name: "Logout",

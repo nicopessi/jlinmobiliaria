@@ -1,5 +1,5 @@
 import React from "react";
-import { Section, Form } from "../components";
+import { Section } from "../components";
 
 const Service = () => {
   return (

@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { client } from "../client";  // Asegúrate de tener el cliente de Sanity configurado correctamente
 import { Section } from "../components";
 import { AgentItemContainer } from "../containers";
-import { getFeaturedAgents } from "../redux/actions/agentsAction";
+
+// Definimos la consulta para obtener los agentes destacados (ajusta según tu esquema en Sanity)
+const AGENTS_QUERY = `*[_type == "agente" && featured == true] | order(name asc) {
+  _id,
+  name,
+  photo,
+  contact,
+  email,
+  "photoUrl": photo.asset->url
+}`;
 
 const FeaturedAgentsContainer = () => {
-  const dispatch = useDispatch();
-
-  const agents = useSelector((state) => state.featuredAgents);
-
-  const { featured: agentsList } = agents;
+  const [agentsList, setAgentsList] = useState([]);
 
   useEffect(() => {
-    dispatch(getFeaturedAgents());
-  }, [dispatch]);
+    // Obtenemos los agentes destacados de Sanity
+    client.fetch(AGENTS_QUERY)
+      .then((data) => setAgentsList(data))
+      .catch((error) => console.error("Error fetching featured agents:", error));
+  }, []);
 
   return (
     <Section bgColor="--bs-fade-info">
@@ -22,9 +30,13 @@ const FeaturedAgentsContainer = () => {
           <Section.Title>Nuestros Agentes</Section.Title>
         </Section.Header>
         <Section.Content>
-          {agentsList.map((agent) => (
-            <AgentItemContainer key={agent.id} agent={agent} />
-          ))}
+          {agentsList.length > 0 ? (
+            agentsList.map((agent) => (
+              <AgentItemContainer key={agent._id} agent={agent} />
+            ))
+          ) : (
+            <p>No hay agentes destacados en este momento.</p>
+          )}
         </Section.Content>
       </Section.InnerContainer>
     </Section>

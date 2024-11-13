@@ -1,51 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAgent } from "../redux/actions/agentsAction";
+
 import { Section, Agent } from "../components";
 import {
   HeaderContainer,
-  ListingItemContainer,
   ContactAgentContainer,
-  PropertyRelatedContainer,
   FooterContainer,
 } from "../containers";
-import { getFeaturedList } from "../redux/actions/propertiesAction";
 
+// Este es el componente principal
 const Agentt = () => {
-  const { id } = useParams();
-
-  const dispatch = useDispatch();
-
-  const { agent } = useSelector((state) => state.agent);
-
-  const featuredList = useSelector((state) => state.featuredProperty);
-
-  const { featured: featuredProperties } = featuredList;
-
-  // create a property agent to pass to ContactAgentContainer
-
-  const contactAgent = { agent };
-
-  const categories = Object.entries(
-    agent.listings
-      .map((listings) => listings.category)
-      .reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {})
-  );
-  const [categoryName, setCategoryName] = useState("All");
-
-  const [categoryCount, setCategoryCount] = useState(0);
-
+  const { id } = useParams(); // Para obtener el id del agente desde la URL
+  const [agent, setAgent] = useState({});
   const [properties, setProperties] = useState([]);
 
-  console.log(properties);
-
+  // useEffect para cargar los datos del agente cuando cambia el id
   useEffect(() => {
-    dispatch(getAgent(id));
-    setCategoryCount(agent.listings.length);
-    setProperties(agent.listings);
-    dispatch(getFeaturedList());
-  }, [id, dispatch, agent]);
+    // Función que simula la llamada a la API para obtener el agente por su ID
+    const fetchAgentData = async () => {
+      // Aquí debes reemplazar esta lógica con una llamada real a tu API
+      const agentData = await agent(id); // Reemplaza esta línea con tu lógica real
+      setAgent(agentData);
+      setProperties(agentData.listings); // Aquí estamos asignando las propiedades del agente
+    };
+
+    fetchAgentData();
+  }, [id]);
+
+  // Este es el render del componente
   return (
     <>
       <HeaderContainer bg="false" />
@@ -81,7 +63,6 @@ const Agentt = () => {
                     </Agent.List>
                     <Agent.Social>
                       <Agent.List>
-                        
                         <Agent.ListItem>
                           <Agent.ExternalAnchor to={agent.social.linkedin}>
                             <Agent.Icon name="fab fa-linkedin" />
@@ -98,11 +79,10 @@ const Agentt = () => {
                   </Agent.About>
                 </Agent.InfoBottom>
               </Agent.Info>
-              
             </Agent.Left>
             <Agent.Right>
-              <ContactAgentContainer property={contactAgent} />
-              
+              {/* El contenedor para el agente de contacto */}
+              <ContactAgentContainer property={{ agent }} />
             </Agent.Right>
           </Agent.Content>
         </Section.InnerContainer>
@@ -112,6 +92,7 @@ const Agentt = () => {
   );
 };
 
+// Este es el componente CategoryBtns
 const CategoryBtns = ({
   categories,
   count,
@@ -127,28 +108,13 @@ const CategoryBtns = ({
     setProperties(agent.listings);
   };
 
-  const handleCategories = (name, count) => {
-    const filteredProperties = agent.listings.filter(
-      (property) => property.category === name
-    );
-
-    setCategoryName(name);
-
-    setCategoryCount(count);
-
-    setProperties(filteredProperties);
-  };
+  // Aquí deberías retornar algún contenido si es necesario
   return (
-    <Agent.Category>
-      <Agent.Button onClick={() => handleAll(count)}>All</Agent.Button>
-      {categories.map((category) => (
-        <Agent.Button
-          key={category[0]}
-          onClick={() => handleCategories(category[0], category[1])}>
-          {category[0]}
-        </Agent.Button>
-      ))}
-    </Agent.Category>
+    <div>
+      {/* Aquí irían los botones de categoría, por ejemplo */}
+      <button onClick={() => handleAll(count)}>All</button>
+      {/* Puedes agregar más botones de categorías aquí */}
+    </div>
   );
 };
 

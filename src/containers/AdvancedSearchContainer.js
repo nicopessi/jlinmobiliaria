@@ -1,44 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { getPropertyList } from "../redux/actions/propertiesAction";
-
+import { client } from "../client";  
 import { FormWrapper, Form } from "../components";
 
-import { priceFormat } from "../helpers/helper_functions";
+const PROPERTIES_QUERY = `*[_type in ["casas", "cochera", "departamento", "galpon", "oficina", "terreno"]] {
+  _id,
+  price,
+  category,
+  listedIn,
+  address,
+  features
+}`;
 
 const AdvancedSearchContainer = () => {
-  const dispatch = useDispatch();
-
-  const { properties } = useSelector((state) => state.propertyList);
-
-  const price = properties.map(
-    (property) => +property.price.split(",").join("")
-  );
-
-  const maxPrice = Math.max.apply(null, price),
-    minPrice = Math.min.apply(null, price);
-
-  const categories = [
-    ...new Set(properties.map((property) => property.category)),
-  ];
-
-  const listedIn = [
-    ...new Set(properties.map((property) => property.listedIn)),
-  ];
-
-  const counties = [
-    ...new Set(properties.map((property) => property.address.county)),
-  ];
-  const rooms = [
-    ...new Set(properties.map((property) => property.features.bedrooms)),
-  ].sort((a, b) => a - b);
-
+  const [properties, setProperties] = useState([]);
   const [priceRange, setPriceRange] = useState(0);
 
   useEffect(() => {
-    dispatch(getPropertyList());
-  }, [dispatch]);
+    client.fetch(PROPERTIES_QUERY)
+      .then((data) => setProperties(data))
+      .catch((error) => console.error("Error fetching properties:", error));
+  }, []);
+
+  // Procesamos los precios directamente desde Sanity
+  const prices = properties.map((property) => property.price);
+  const maxPrice = Math.max(...prices);
+  const minPrice = Math.min(...prices);
+
+  const categories = [...new Set(properties.map((property) => property.category))];
+  const listedIn = [...new Set(properties.map((property) => property.listedIn))];
+  const counties = [
+    ...new Set(properties.map((property) => property.address?.county)),
+  ];
+  const rooms = [
+    ...new Set(properties.map((property) => property.features?.bedrooms)),
+  ].sort((a, b) => a - b);
+
   return (
     <FormWrapper>
       <FormWrapper.Header>
@@ -74,15 +70,13 @@ const AdvancedSearchContainer = () => {
             <Form.Select>
               <Form.Option defaultValue>Habitaciones</Form.Option>
               {rooms.map((room) => (
-                <Form.Option key={Math.random(room)}>{room}</Form.Option>
+                <Form.Option key={room}>{room}</Form.Option>
               ))}
             </Form.Select>
           </Form.FormGroup>
           <Form.FormGroup>
             <Form.Span>
-              {" "}
-              Precio: U$D {priceFormat(+priceRange)} a U$D {" "}
-              {priceFormat(maxPrice)}
+              Precio: U$D {priceRange} a U$D {maxPrice}
             </Form.Span>
             <Form.RangeInput
               type="range"
@@ -93,7 +87,7 @@ const AdvancedSearchContainer = () => {
             />
           </Form.FormGroup>
           <Form.FormGroup>
-            <Form.Input type="text" placeholder="Termino de busqueda" />
+            <Form.Input type="text" placeholder="Término de búsqueda" />
           </Form.FormGroup>
           <Form.FormGroup>
             <Form.SubmitInput type="submit" value="Buscar" />

@@ -1,19 +1,28 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { client } from "../client";  // Asegúrate de tener el cliente de Sanity configurado correctamente
 import { Section } from "../components";
 import { ListingItemContainer } from "./index";
-import { getFeaturedList } from "../redux/actions/propertiesAction";
+
+// Definimos la consulta de propiedades destacadas (o puedes usar la consulta que prefieras)
+const FEATURED_QUERY = `*[_type == "propiedad" && featured == true] | order(publishedAt desc) {
+  _id,
+  title,
+  location,
+  price,
+  "image1": image1.asset->url,
+  slug,
+  publishedAt
+}`;
 
 const FeaturedListingContainer = () => {
-  const dispatch = useDispatch();
-
-  const featuredList = useSelector((state) => state.featuredProperty);
-
-  const { featured: featuredProperties } = featuredList;
+  const [featuredProperties, setFeaturedProperties] = useState([]);
 
   useEffect(() => {
-    dispatch(getFeaturedList());
-  }, [dispatch]);
+    // Obtenemos las propiedades destacadas de Sanity
+    client.fetch(FEATURED_QUERY)
+      .then((data) => setFeaturedProperties(data))
+      .catch((error) => console.error("Error fetching featured properties:", error));
+  }, []);
 
   return (
     <Section bgColor="--bs-light">
@@ -22,9 +31,13 @@ const FeaturedListingContainer = () => {
           <Section.Title>Nuestras propiedades destacadas:</Section.Title>
         </Section.Header>
         <Section.Content>
-          {featuredProperties.map((featured) => (
-            <ListingItemContainer key={featured.id} featured={featured} />
-          ))}
+          {featuredProperties.length > 0 ? (
+            featuredProperties.map((featured) => (
+              <ListingItemContainer key={featured._id} featured={featured} />
+            ))
+          ) : (
+            <p>No hay propiedades destacadas en este momento.</p>
+          )}
         </Section.Content>
         <Section.Footer>
           <Section.Button>More Listing</Section.Button>
