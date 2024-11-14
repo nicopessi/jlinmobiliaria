@@ -27,15 +27,17 @@ export const galponType = defineType({
         type: 'number',
         title: 'Metros cuadrados libres',
       }),
+  
       defineField({
-        name: 'height',
-        type: 'number',
-        title: 'Altura del galpón (en metros)',
+        name: 'image1',
+        type: 'array',
+        title: 'Imagen fachada',
+        of: [{ type: 'image' }],
       }),
       defineField({
-        name: 'images',
+        name: 'aditionalImages',
         type: 'array',
-        title: 'Imágenes del galpón',
+        title: 'Imágenes adicionales',
         of: [{ type: 'image' }],
       }),
       defineField({

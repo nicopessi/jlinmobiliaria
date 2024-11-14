@@ -65,7 +65,7 @@ export const casasType = defineType({
         maxLength: 96,
       },
     }),
-    // Agregar el campo 'publishedAt'
+
     defineField({
       name: 'publishedAt',
       type: 'datetime',

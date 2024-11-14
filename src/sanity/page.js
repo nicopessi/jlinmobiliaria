@@ -1,4 +1,4 @@
- // post.query.js
+
 
 // Consulta para propiedades tipo "casas"
 export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order(publishedAt desc) {
@@ -24,7 +24,8 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     type,
     dimensions,
     securityFeatures,
-    "images": images[].asset->url,
+    "image1": image1.asset->url,
+    "additionalImages": additionalImages[].asset->url,
     price
   }`;
   
@@ -34,13 +35,13 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     title,
     location,
     rooms,
-    bathrooms,
+    beths,
     floor,
     balcony,
     parking,
-    mts2,
+    areac,
     "image1": image1.asset->url,
-    "images": images[].asset->url,
+   "additionalImages": additionalImages[].asset->url,
     amenities,
     price
   }`;
@@ -52,8 +53,8 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     location,
     areac,
     areal,
-    height,
-    "images": images[].asset->url,
+    "image1": image1.asset->url,
+    "additionalImages": additionalImages[].asset->url,
     price
   }`;
   
@@ -63,10 +64,11 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     title,
     location,
     floor,
-    area,
+    areac,
     rooms,
     amenities,
-    "images": images[].asset->url,
+    "image1": image1.asset->url,
+    "additionalImages": additionalImages[].asset->url,
     price
   }`;
   
@@ -77,7 +79,8 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     location,
     area,
     zoning,
-    "images": images[].asset->url,
+    "image1": image1.asset->url,
+    "additionalImages": additionalImages[].asset->url,
     price
   }`;
   

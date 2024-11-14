@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 
-export const oficinaType = defineType({
-    name: 'oficina',
+export const localType = defineType({
+    name: 'local',
     title: 'Oficina',
     type: 'document',
     fields: [
@@ -23,7 +23,7 @@ export const oficinaType = defineType({
         title: 'Piso de la oficina',
       }),
       defineField({
-        name: 'area',
+        name: 'areac',
         type: 'number',
         title: 'Metros cuadrados de la oficina',
         validation: (rule) => rule.required(),
@@ -43,9 +43,15 @@ export const oficinaType = defineType({
         },
       }),
       defineField({
-        name: 'images',
+        name: 'image1',
         type: 'array',
-        title: 'Imágenes de la oficina',
+        title: 'Imagen fachada',
+        of: [{ type: 'image' }],
+      }),
+      defineField({
+        name: 'aditionalImages',
+        type: 'array',
+        title: 'Imágenes adicionales',
         of: [{ type: 'image' }],
       }),
       defineField({

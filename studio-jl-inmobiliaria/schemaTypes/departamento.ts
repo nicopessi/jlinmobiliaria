@@ -25,7 +25,7 @@ export const departamentoType = defineType({
         validation: (rule) => rule.required(),
       }),
       defineField({
-        name: 'bathrooms',
+        name: 'beths',
         type: 'number',
         title: 'Baños',
         validation: (rule) => rule.required(),
@@ -46,9 +46,9 @@ export const departamentoType = defineType({
         title: '¿Incluye estacionamiento?',
       }),
       defineField({
-        name: 'mts2',
+        name: 'areac',
         type: 'number',
-        title: 'Metros cuadrados totales',
+        title: 'Metros cuadrados cubiertos',
       }),
       defineField({
         name: 'image1',
@@ -56,9 +56,9 @@ export const departamentoType = defineType({
         title: 'Imagen fachada'
       }),
       defineField({
-        name: 'images',
+        name: 'aditionalImages',
         type: 'array',
-        title: 'Imágenes',
+        title: 'Imágenes adicionales',
         of: [{ type: 'image' }],
       }),
       defineField({

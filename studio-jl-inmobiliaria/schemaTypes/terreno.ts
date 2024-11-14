@@ -18,7 +18,7 @@ export const terrenoType = defineType({
         validation: (rule) => rule.required(),
       }),
       defineField({
-        name: 'area',
+        name: 'areal',
         type: 'number',
         title: 'Metros cuadrados del terreno',
         validation: (rule) => rule.required(),
@@ -30,9 +30,15 @@ export const terrenoType = defineType({
         description: 'Ejemplo: Residencial, Comercial, Industrial',
       }),
       defineField({
-        name: 'images',
+        name: 'image1',
         type: 'array',
-        title: 'Imágenes del terreno',
+        title: 'Imagen fachada',
+        of: [{ type: 'image' }],
+      }),
+      defineField({
+        name: 'aditionalImages',
+        type: 'array',
+        title: 'Imágenes adicionales',
         of: [{ type: 'image' }],
       }),
       defineField({

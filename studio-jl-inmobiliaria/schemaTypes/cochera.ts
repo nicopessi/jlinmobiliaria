@@ -43,9 +43,15 @@ export const cocheraType = defineType({
         },
       }),
       defineField({
-        name: 'images',
+        name: 'image1',
         type: 'array',
-        title: 'Imágenes de la cochera',
+        title: 'Imagen fachada',
+        of: [{ type: 'image' }],
+      }),
+      defineField({
+        name: 'aditionalImages',
+        type: 'array',
+        title: 'Imágenes adicionales',
         of: [{ type: 'image' }],
       }),
       defineField({
