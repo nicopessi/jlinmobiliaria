@@ -4,17 +4,19 @@ const links = [
     to: "/",
   },
   {
-    name: "Propiedades",
-    to: "/listing",
-  },
-  {
-    name: "Nosotros",
-    to: "/agents",
-  },
-  {
     name: "Servicios",
-    to: "/service",
+    to: "/",
   },
+  {
+    name: "Propiedades",
+    to: "/", 
+    
+  },
+  {
+    name: "Contacto",
+    to: "/",
+  },
+  
 ];
 
 export default links;

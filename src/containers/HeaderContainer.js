@@ -3,7 +3,7 @@ import links from "../constants/routes/nav-links";
 import { HeaderWrapper, Banner, Jumbotron } from "../components";
 
 import '../styles/sidenavigation.css'
-import { AdvancedSearchContainer, SideNavigationContainer } from "./index";
+import { AdvancedSearchContainer } from "./index";
 
 const HeaderContainer = ({ bg, source }) => {
   const [sideNavShown, setSideNavShown] = useState(false);
@@ -67,12 +67,7 @@ const HeaderContainer = ({ bg, source }) => {
           </Jumbotron.Right>
         </Jumbotron>
       )}
-      <SideNavigationContainer
-        sideNavShown={sideNavShown}
-        sideNavHidden={sideNavHidden}
-        setSideNavHidden={setSideNavHidden}
-        setSideNavShown={setSideNavShown}
-      />
+      
     </Banner>
   );
 };

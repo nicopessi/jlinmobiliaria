@@ -1,58 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { client } from "../client"; 
-import{
-  CASAS_QUERY,
-  COCHERA_QUERY,
-  DEPARTAMENTO_QUERY,
-  GALPON_QUERY,
-  OFICINA_QUERY,
-  TERRENO_QUERY,
-} from "../sanity/page"; 
+import React, {  useEffect, useMemo } from "react";
+
 
 import {
-  HeaderContainer,
+  
   ListingItemContainer,
   AdvancedSearchContainer,
-  FooterContainer,
+  
 } from "../containers";
 import { Section } from "../components";
+import { useProperties } from "../context/PropertiesContext";
 
 const Listing = () => {
-  const [properties, setProperties] = useState([]);
+  const { fetchProperties, properties, searchTerm, type, filters } = useProperties();
 
   useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        // Realizamos varias consultas a la base de datos
-        const casas = await client.fetch(CASAS_QUERY);
-        const cocheras = await client.fetch(COCHERA_QUERY);
-        const departamentos = await client.fetch(DEPARTAMENTO_QUERY);
-        const galpones = await client.fetch(GALPON_QUERY);
-        const oficinas = await client.fetch(OFICINA_QUERY);
-        const terrenos = await client.fetch(TERRENO_QUERY);
+    fetchProperties(); // Cargar propiedades al montar el componente
+  }, [fetchProperties]);
+
   
-        const allProperties = [
-          ...casas || [],         // Casas
-          ...cocheras || [],      // Cocheras
-          ...departamentos || [], // Departamentos
-          ...galpones || [],      // Galpones
-          ...oficinas || [],      // Oficinas
-          ...terrenos || [],      // Terrenos
-        ];
-  
-        setProperties(allProperties);
-      } catch (error) {
-        console.error("Error fetching properties:", error);
-      }
-    };
-  
-    fetchProperties();
-  }, []);
-  
+  // Filtrado de propiedades
+  const filterdProperties = useMemo(() => {
+    // Si no hay filtros activos, mostramos todas las propiedades
+    return properties
+      .filter((property) => {
+        // Filtrar por tipo si se especifica
+        if (type && property._type !== type) return false;
+        // Filtrar por el término de búsqueda
+        if (searchTerm && !property.title.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+        // Filtros adicionales, por ejemplo, por precio, habitaciones, etc.
+        if (filters) {
+          if (filters.location && property.location !== filters.location) return false;
+          if (filters.rooms && property.rooms !== parseInt(filters.rooms)) return false;
+          if (filters.price && property.price > filters.price) return false;
+        }
+        return true; // Si no se cumplen ninguna de las condiciones, incluir la propiedad
+      });
+  }, [properties, searchTerm, type, filters]);
 
   return (
     <>
-      <HeaderContainer bg="false" />
+      
       <Section bgColor="--bs-fade-info">
         <Section.InnerContainer>
           <Section.Flex>
@@ -64,29 +51,30 @@ const Listing = () => {
             <Section.FlexItem width="65%">
               <Section.Title>Lista de propiedades</Section.Title>
               <Section.Content>
-              {properties.length > 0 ? (
-  properties.map((featured) => {
-    if (!featured || !featured._id) return null; // Verificación extra
-    return (
-      <ListingItemContainer
-        key={featured._id}
-        featured={featured}
-        width="49%"
-      />
-    );
-  })
-) : (
-  <p>Loading properties...</p>
-)}
+                {filterdProperties.length > 0 ? (
+                  filterdProperties.map((featured) => {
+                    if (!featured || !featured._id) return null; // Verificación extra
+                    return (
+                      <ListingItemContainer
+                        key={featured._id}
+                        featured={featured}
+                        width="49%"
+                      />
+                    );
+                  })
+                ) : (
+                  <p>No properties found.</p> // En caso de no encontrar propiedades que coincidan
+                )}
               </Section.Content>
-              <Section.Footer>
+              
+                
                 <Section.Button>More Listings</Section.Button>
-              </Section.Footer>
+              >
             </Section.FlexItem>
           </Section.Flex>
         </Section.InnerContainer>
       </Section>
-      <FooterContainer />
+     
     </>
   );
 };

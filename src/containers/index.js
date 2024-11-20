@@ -1,6 +1,6 @@
 export { default as HeaderContainer } from "./HeaderContainer";
 export { default as FeaturedListingContainer } from "./FeaturedListingContainer";
-export { default as FeaturedAgentsContainer } from "./FeaturedAgentsContainer";
+
 export { default as HomeContactContainer } from "./HomeContactContainer";
 export { default as FooterContainer } from "./FooterContainer";
 export { default as ListingItemContainer } from "./ListingItemContainer";
@@ -9,9 +9,4 @@ export { default as ContactAgentContainer } from "./ContactAgentContainer";
 export { default as PropertyRelatedContainer } from "./PropertyRelatedContainer";
 export { default as AdvancedSearchContainer } from "./AdvancedSearchContainer";
 
-export { default as ProfileContainer } from "./ProfileContainer";
-
-
-
-export { default as SideNavigationContainer } from "./SideNavigationContainer";
 export { default as Service } from "./Services";

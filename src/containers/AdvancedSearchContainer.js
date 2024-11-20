@@ -1,97 +1,248 @@
 import React, { useEffect, useState } from "react";
-import { client } from "../client";  
-import { FormWrapper, Form } from "../components";
+import { client } from "../client";
+import { FormWrapper, Form, Section, Grid} from "../components";
+import { useProperties } from "../context/PropertiesContext";
 
 const PROPERTIES_QUERY = `*[_type in ["casas", "cochera", "departamento", "galpon", "oficina", "terreno"]] {
   _id,
+  _type,
   price,
-  category,
-  listedIn,
-  address,
-  features
+  location,
+  rooms,
+  beths,
+  areac,
+  areal,
+  type,
+  zoning,
 }`;
 
 const AdvancedSearchContainer = () => {
   const [properties, setProperties] = useState([]);
   const [priceRange, setPriceRange] = useState(0);
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState(""); // Ubicación seleccionada
+  const [selectedRooms, setSelectedRooms] = useState(""); // Habitaciones seleccionadas
+  const [selectedBaths, setSelectedBaths] = useState(""); // Baños seleccionados, solo para casas y departamentos
+const [selectedZoning, setSelectedZoning] = useState(""); // Zonificación seleccionada, solo para terrenos
+const [selectedCategory, setSelectedCategory] = useState(""); // Categoría seleccionada, solo para cocheras
+  const [selectedPrice, setSelectedPrice] = useState(""); // Precio seleccionado
+  const { setFilters } = useProperties();
+
+ const handleSearch = (e) => {
+    e.preventDefault();
+
+    const newFilters = {
+      type: selectedType,
+      location: selectedLocation || null, // Asegúrate de pasar null si no se selecciona ubicación
+      rooms: selectedRooms || null,
+      price: selectedPrice || null,
+    };
+  
+    // Añadir filtros específicos para tipos de propiedad
+    if (selectedType === "terreno") {
+      newFilters.zoning = selectedZoning || null; // Zonificación para terrenos
+    }
+  
+    if (selectedType === "casas" || selectedType === "departamento") {
+      newFilters.baths = selectedBaths || null; // Baños solo para casas y departamentos
+    }
+  
+    if (selectedType === "cochera") {
+      newFilters.category = selectedCategory || null; // Categoría para cocheras
+    }
+  
+    setFilters((prevFilters) => {
+      if (JSON.stringify(prevFilters) !== JSON.stringify(newFilters)) {
+        return newFilters;
+      }
+      return prevFilters;  // Si no hay cambios, no actualiza el estado
+    });
+  };
+  
 
   useEffect(() => {
-    client.fetch(PROPERTIES_QUERY)
-      .then((data) => setProperties(data))
+    client
+      .fetch(PROPERTIES_QUERY)
+      .then((data) => {
+        setProperties(data);
+        const initialPrices = data.map((property) => property.price);
+        setPriceRange(Math.min(...initialPrices)); // Establecemos un rango inicial
+      })
       .catch((error) => console.error("Error fetching properties:", error));
   }, []);
 
-  // Procesamos los precios directamente desde Sanity
-  const prices = properties.map((property) => property.price);
-  const maxPrice = Math.max(...prices);
-  const minPrice = Math.min(...prices);
+  // Filtrar propiedades según el tipo seleccionado
+  const filteredProperties = properties.filter(
+    (property) => property._type === selectedType
+  );
 
-  const categories = [...new Set(properties.map((property) => property.category))];
-  const listedIn = [...new Set(properties.map((property) => property.listedIn))];
-  const counties = [
-    ...new Set(properties.map((property) => property.address?.county)),
+  const handleClearFilters = () => {
+    // Restablecer todos los filtros al valor inicial
+    setSelectedType("");
+    setSelectedLocation("");
+    setSelectedRooms("");
+    setSelectedBaths("");
+    setSelectedZoning("");
+    setSelectedCategory("");
+    setSelectedPrice("");
+    setPriceRange(0);
+  
+    // Opcionalmente, también puedes restablecer los filtros en el contexto
+    setFilters({}); // Esto depende de cómo esté implementado tu contexto
+  };
+
+  // Obtener datos únicos de propiedades filtradas
+  const counties = [...new Set(filteredProperties.map((prop) => prop.location))];
+  const prices = filteredProperties.map((property) => property.price || 0);
+  const maxPrice = Math.max(...prices, 0);
+  const minPrice = Math.min(...prices, 0);
+
+  // Obtener tipos únicos
+  const propertyTypes = [...new Set(properties.map((property) => property._type))];
+
+  // Opciones específicas por tipo
+  const rooms = [...new Set(filteredProperties.map((prop) => prop.rooms))].sort(
+    (a, b) => a - b
+  );
+  const beths = [...new Set(filteredProperties.map((prop) => prop.beths))].sort(
+    (a, b) => a - b
+  );
+  const areac = [...new Set(filteredProperties.map((prop) => prop.areac))].sort(
+    (a, b) => a - b
+  );
+
+  const typeOptions = [...new Set(filteredProperties.map((prop) => prop.type))];
+  const zoningOptions = [
+    ...new Set(filteredProperties.map((prop) => prop.zoning)),
   ];
-  const rooms = [
-    ...new Set(properties.map((property) => property.features?.bedrooms)),
-  ].sort((a, b) => a - b);
 
   return (
     <FormWrapper>
       <FormWrapper.Header>
-        <FormWrapper.Title>Busqueda Avanzada</FormWrapper.Title>
+        <FormWrapper.Title>Búsqueda Avanzada</FormWrapper.Title>
       </FormWrapper.Header>
       <FormWrapper.Content>
-        <Form>
+        <Form onSubmit={handleSearch}>
+          {/* Campo Tipo */}
           <Form.FormGroup>
-            <Form.Select>
-              <Form.Option defaultValue>Tipo</Form.Option>
-              {listedIn.map((type) => (
-                <Form.Option key={type}>{type}</Form.Option>
+            <Form.Select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+            >
+              <Form.Option value="" disabled>
+                Tipo
+              </Form.Option>
+              {propertyTypes.map((type) => (
+                <Form.Option key={type} value={type}>
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </Form.Option>
               ))}
             </Form.Select>
           </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.Select>
-              <Form.Option defaultValue>Ubicación</Form.Option>
-              {counties.map((county) => (
-                <Form.Option key={county}>{county}</Form.Option>
-              ))}
-            </Form.Select>
-          </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.Select>
-              <Form.Option defaultValue>Categorias</Form.Option>
-              {categories.map((category) => (
-                <Form.Option key={category}>{category}</Form.Option>
-              ))}
-            </Form.Select>
-          </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.Select>
-              <Form.Option defaultValue>Habitaciones</Form.Option>
-              {rooms.map((room) => (
-                <Form.Option key={room}>{room}</Form.Option>
-              ))}
-            </Form.Select>
-          </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.Span>
-              Precio: U$D {priceRange} a U$D {maxPrice}
-            </Form.Span>
-            <Form.RangeInput
-              type="range"
-              min={minPrice}
-              max={maxPrice}
-              value={priceRange}
-              onChange={({ target: { value } }) => setPriceRange(value)}
-            />
-          </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.Input type="text" placeholder="Término de búsqueda" />
-          </Form.FormGroup>
-          <Form.FormGroup>
-            <Form.SubmitInput type="submit" value="Buscar" />
-          </Form.FormGroup>
+
+          {/* Campo Ubicación (Visible solo si hay un tipo seleccionado) */}
+          {selectedType && (
+            <Form.FormGroup>
+              <Form.Select
+                value={selectedLocation}
+                onChange={(e) => setSelectedLocation(e.target.value)}
+              >
+                <Form.Option value="" disabled>
+                  Ubicación
+                </Form.Option>
+                {counties.map((county) => (
+                  <Form.Option key={county} value={county}>
+                    {county}
+                  </Form.Option>
+                ))}
+              </Form.Select>
+            </Form.FormGroup>
+          )}
+
+          {/* Campos Dinámicos según el tipo */}
+          {selectedType === "casas" || selectedType === "departamento" ? (
+            <>
+              <Form.FormGroup>
+                <Form.Select
+                  value={selectedRooms}
+                  onChange={(e) => setSelectedRooms(e.target.value)}
+                >
+                  <Form.Option value="" disabled>
+                    Habitaciones
+                  </Form.Option>
+                  {rooms.map((room) => (
+                    <Form.Option key={room} value={room}>
+                      {room}
+                    </Form.Option>
+                  ))}
+                </Form.Select>
+              </Form.FormGroup>
+              <Form.FormGroup>
+                <Form.Select>
+                  <Form.Option value="" disabled>
+                    Baños
+                  </Form.Option>
+                  {beths.map((beth) => (
+                    <Form.Option key={beth} value={beth}>
+                      {beth}
+                    </Form.Option>
+                  ))}
+                </Form.Select>
+              </Form.FormGroup>
+            </>
+          ) : null}
+
+          {selectedType === "cochera" && (
+            <Form.FormGroup>
+              <Form.Select>
+                <Form.Option value="" disabled>
+                  Tipo
+                </Form.Option>
+                {typeOptions.map((type) => (
+                  <Form.Option key={type} value={type}>
+                    {type}
+                  </Form.Option>
+                ))}
+              </Form.Select>
+            </Form.FormGroup>
+          )}
+
+          {selectedType === "terreno" && (
+            <Form.FormGroup>
+              <Form.Select>
+                <Form.Option value="" disabled>
+                  Zonificación
+                </Form.Option>
+                {zoningOptions.map((zoning) => (
+                  <Form.Option key={zoning} value={zoning}>
+                    {zoning}
+                  </Form.Option>
+                ))}
+              </Form.Select>
+            </Form.FormGroup>
+          )}
+
+          {/* Campo Precio */}
+          {selectedType && (
+            <Form.FormGroup>
+              <Form.Span>
+                Precio: U$D {priceRange} a U$D {maxPrice}
+              </Form.Span>
+              <Form.RangeInput
+                type="range"
+                min={minPrice}
+                max={maxPrice}
+                value={priceRange}
+                onChange={({ target: { value } }) => setPriceRange(value)}
+              />
+            </Form.FormGroup>
+          )}
+
+          {/* Botón de Enviar */}
+          <Form.FormGroup style={{ display: "flex", gap: "10px", alignItems: "center"}}>
+  <Form.SubmitInput type="submit" style={{ display: "inline-block" }} />
+  <Section.Button onClick={handleClearFilters} style={{ display: "inline-block", marginLeft: "180px" }}>Limpiar</Section.Button>
+</Form.FormGroup>
         </Form>
       </FormWrapper.Content>
     </FormWrapper>

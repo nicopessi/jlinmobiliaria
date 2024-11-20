@@ -1,21 +1,25 @@
 import React from "react";
 import {
   HeaderContainer,
-  FeaturedListingContainer,
-  FeaturedAgentsContainer,
+  Service,
+  
+  
   HomeContactContainer,
   FooterContainer,
-  Service,
 } from "../containers";
+import { Listings, Nosotros } from "../pages";
 
 const Home = () => {
+  
+
   return (
     <>
       <HeaderContainer bg="true" source="/images/banners/banner4.jpg" />
       <Service />
-      <FeaturedListingContainer />
-      <FeaturedAgentsContainer />
+      <Listings />
+    
       <HomeContactContainer />
+      <Nosotros />
       <FooterContainer />
     </>
   );
