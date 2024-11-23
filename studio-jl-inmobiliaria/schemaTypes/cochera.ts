@@ -23,8 +23,8 @@ export const cocheraType = defineType({
         title: 'Tipo de cochera',
         options: {
           list: [
-            { title: 'Cubierta', value: 'cubierta' },
-            { title: 'Descubierta', value: 'descubierta' },
+            { title: 'Cubierta', value: 'Cubierta' },
+            { title: 'Descubierta', value: 'Descubierta' },
           ],
         },
       }),
@@ -44,9 +44,11 @@ export const cocheraType = defineType({
       }),
       defineField({
         name: 'image1',
-        type: 'array',
-        title: 'Imagen fachada',
-        of: [{ type: 'image' }],
+      type: 'image',
+      title: 'Imagen fachada',
+      options: {
+        hotspot: true,
+      },
       }),
       defineField({
         name: 'aditionalImages',

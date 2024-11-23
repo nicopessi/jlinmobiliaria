@@ -5,7 +5,7 @@ import {
   COCHERA_QUERY,
   DEPARTAMENTO_QUERY,
   GALPON_QUERY,
-  OFICINA_QUERY,
+  LOCAL_QUERY,
   TERRENO_QUERY,
 } from "../sanity/page"; 
 
@@ -33,14 +33,14 @@ const Listing = () => {
           cocheras, 
           departamentos, 
           galpones, 
-          oficinas, 
+          local, 
           terrenos
         ] = await Promise.all([
           client.fetch(CASAS_QUERY),
           client.fetch(COCHERA_QUERY),
           client.fetch(DEPARTAMENTO_QUERY),
           client.fetch(GALPON_QUERY),
-          client.fetch(OFICINA_QUERY),
+          client.fetch(LOCAL_QUERY),
           client.fetch(TERRENO_QUERY),
         ]);
       
@@ -50,7 +50,7 @@ const Listing = () => {
           ...cocheras || [], 
           ...departamentos || [], 
           ...galpones || [], 
-          ...oficinas || [], 
+          ...local|| [], 
           ...terrenos || []
         ];
       

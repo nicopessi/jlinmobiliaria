@@ -3,7 +3,7 @@ import { client } from "../client";
 import { FormWrapper, Form, Section, Grid} from "../components";
 import { useProperties } from "../context/PropertiesContext";
 
-const PROPERTIES_QUERY = `*[_type in ["casas", "cochera", "departamento", "galpon", "oficina", "terreno"]] {
+const PROPERTIES_QUERY = `*[_type in ["casas", "cochera", "departamento", "galpon", "local", "terreno"]] {
   _id,
   _type,
   price,

@@ -16,7 +16,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     slug,
     publishedAt
   }`;
-  
+
   // Consulta para propiedades tipo "cochera"
   export const COCHERA_QUERY = `*[_type == "cochera" && defined(title)] | order(price desc) {
     _id,
@@ -62,8 +62,8 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     price
   }`;
   
-  // Consulta para propiedades tipo "oficina"
-  export const OFICINA_QUERY = `*[_type == "oficina" && defined(title)] | order(price desc) {
+  // Consulta para propiedades tipo "local"
+  export const LOCAL_QUERY = `*[_type == "local" && defined(title)] | order(price desc) {
     _id,
     _type,
     title,

@@ -18,6 +18,7 @@ import {
   LisitngButton,
   TopItemContainer,
 } from "./styles/listing";
+import { urlFor } from '../../client'
 
 const Listing = ({ children, width, ...restProps }) => {
   return (
@@ -48,7 +49,8 @@ Listing.Anchor = ({ children, ...restProps }) => {
   return <Anchor {...restProps}>{children}</Anchor>;
 };
 Listing.Image = ({ source, ...restProps }) => {
-  return <Image src={`/images/houses/${source}`} {...restProps} />;
+  const imageUrl = source ? urlFor(source).url() : null;
+  return imageUrl ? <Image src={imageUrl} {...restProps} /> : null;
 };
 Listing.ImageContainer = ({ children, ...restProps }) => {
   return <ImageContainer {...restProps}>{children}</ImageContainer>;

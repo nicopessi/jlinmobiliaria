@@ -53,7 +53,10 @@ export const departamentoType = defineType({
       defineField({
         name: 'image1',
         type: 'image',
-        title: 'Imagen fachada'
+        title: 'Imagen fachada',
+        options: {
+          hotspot: true,
+        },
       }),
       defineField({
         name: 'aditionalImages',

@@ -5,7 +5,7 @@ import {
   COCHERA_QUERY,
   DEPARTAMENTO_QUERY,
   GALPON_QUERY,
-  OFICINA_QUERY,
+  LOCAL_QUERY,
   TERRENO_QUERY,
 } from "../sanity/page";
 
@@ -42,13 +42,13 @@ export const PropertiesContextProvider = ({ children }) => {
   async function fetchProperties() {
     try {
       // Realizamos varias consultas a la base de datos
-      const [casas, cocheras, departamentos, galpones, oficinas, terrenos] =
+      const [casas, cocheras, departamentos, galpones, local, terrenos] =
         await Promise.all([
           client.fetch(CASAS_QUERY),
           client.fetch(COCHERA_QUERY),
           client.fetch(DEPARTAMENTO_QUERY),
           client.fetch(GALPON_QUERY),
-          client.fetch(OFICINA_QUERY),
+          client.fetch(LOCAL_QUERY),
           client.fetch(TERRENO_QUERY),
         ]);
 
@@ -57,7 +57,7 @@ export const PropertiesContextProvider = ({ children }) => {
         ...(cocheras || []),
         ...(departamentos || []), 
         ...(galpones || []), 
-        ...(oficinas || []),
+        ...(local || []),
         ...(terrenos || []),
       ];
 

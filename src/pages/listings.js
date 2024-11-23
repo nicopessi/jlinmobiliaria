@@ -69,7 +69,7 @@ const Listing = () => {
               
                 
                 <Section.Button>More Listings</Section.Button>
-              >
+              
             </Section.FlexItem>
           </Section.Flex>
         </Section.InnerContainer>

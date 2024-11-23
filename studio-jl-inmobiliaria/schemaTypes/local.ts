@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const localType = defineType({
     name: 'local',
-    title: 'Oficina',
+    title: 'local',
     type: 'document',
     fields: [
       defineField({
@@ -20,12 +20,12 @@ export const localType = defineType({
       defineField({
         name: 'floor',
         type: 'number',
-        title: 'Piso de la oficina',
+        title: 'Piso de la local',
       }),
       defineField({
         name: 'areac',
         type: 'number',
-        title: 'Metros cuadrados de la oficina',
+        title: 'Metros cuadrados de la local',
         validation: (rule) => rule.required(),
       }),
       defineField({
@@ -33,6 +33,12 @@ export const localType = defineType({
         type: 'number',
         title: 'Número de ambientes',
       }),
+      defineField({
+        name: 'beths',
+        type: 'number',
+        title: 'Cantidad de baños',
+      }),
+      
       defineField({
         name: 'amenities',
         type: 'array',
@@ -44,9 +50,11 @@ export const localType = defineType({
       }),
       defineField({
         name: 'image1',
-        type: 'array',
-        title: 'Imagen fachada',
-        of: [{ type: 'image' }],
+      type: 'image',
+      title: 'Imagen fachada',
+      options: {
+        hotspot: true,
+      },
       }),
       defineField({
         name: 'aditionalImages',

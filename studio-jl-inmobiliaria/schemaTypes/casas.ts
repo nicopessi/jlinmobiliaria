@@ -43,6 +43,9 @@ export const casasType = defineType({
       name: 'image1',
       type: 'image',
       title: 'Imagen fachada',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'additionalImages',

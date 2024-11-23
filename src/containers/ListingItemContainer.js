@@ -3,11 +3,16 @@ import React from "react";
 import { Listing } from "../components";
 
 const CasaListingItem = ({featured,width}) => {
+
+
+
   return (
+    
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+        <Listing.Image source={featured.image1} />
+        
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -48,6 +53,7 @@ const CasaListingItem = ({featured,width}) => {
         </Listing.BottomItem>
       </Listing.Bottom>
     </Listing>
+    
   );
 }
 
@@ -57,7 +63,7 @@ const TerrenoListingItem = ({featured,width}) => {
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+          <Listing.Image source={featured.image1} />
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -73,6 +79,8 @@ const TerrenoListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
+          <Listing.Text>Mts 2 terreno: {featured.areal} mts2 </Listing.Text>
+          <Listing.Text>Zonificacion: {featured.zoning}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured.id}`}>
@@ -105,7 +113,7 @@ const DepartamentoListingItem = ({featured,width}) => {
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+          <Listing.Image source={featured.image1} />
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -121,6 +129,8 @@ const DepartamentoListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
+          <Listing.Text>Habitaciones: {featured.rooms} </Listing.Text>
+          <Listing.Text>Baños: {featured.beths}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured.id}`}>
@@ -153,7 +163,7 @@ const CocheraListingItem = ({featured,width}) => {
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+          <Listing.Image source={featured.image1} />
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -169,6 +179,8 @@ const CocheraListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
+          <Listing.Text>Tipo de cochera: {featured.type} </Listing.Text>
+          <Listing.Text>Largo * Ancho: {featured.dimensions} mts</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured.id}`}>
@@ -201,7 +213,7 @@ const LocalListingItem = ({featured,width}) => {
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+          <Listing.Image source={featured.image1} />
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -217,6 +229,8 @@ const LocalListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
+          <Listing.Text>Ambientes: {featured.rooms} </Listing.Text>
+          <Listing.Text>Baños: {featured.beths}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured.id}`}>
@@ -249,7 +263,7 @@ const GalponListingItem = ({featured,width}) => {
     <Listing width={width}>
       <Listing.Top>
         <Listing.TopItem>
-          <Listing.Image source={featured.images?.[0]} />
+          <Listing.Image source={featured.image1} />
           <Listing.TopItemContainer>
             <Listing.TopItemInfo>
               <Listing.Icon></Listing.Icon>
@@ -265,6 +279,8 @@ const GalponListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
+          <Listing.Text>Mts 2 Cubiertos: {featured.areac} </Listing.Text>
+          <Listing.Text>Mts 2 Libres: {featured.areal}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured.id}`}>
@@ -296,7 +312,7 @@ const getPropertyComponent = (type) => {
   if(type === "casas") return CasaListingItem;
   if(type === "terreno") return TerrenoListingItem;
   if(type === "galpon") return GalponListingItem;
-  if(type === "oficina") return LocalListingItem;
+  if(type === "local") return LocalListingItem;
   if(type === "cochera") return CocheraListingItem;
   if(type === "departamento") return DepartamentoListingItem;
 
