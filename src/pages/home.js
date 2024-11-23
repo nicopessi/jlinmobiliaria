@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <>
-      <HeaderContainer bg="true" source="/images/banners/banner4.jpg" />
+      <HeaderContainer bg="true" source="/images/banners/banner3.jpg" />
       <Service />
       <Listings />
     
