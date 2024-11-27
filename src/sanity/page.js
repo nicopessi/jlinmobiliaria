@@ -11,7 +11,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     areac,
     areal,
     "image1": image1.asset->url,
-    "additionalImages": additionalImages[].asset->url,
+    "aditionalImages": aditionalImages[].asset->url,
     price,
     slug,
     publishedAt
@@ -27,7 +27,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     dimensions,
     securityFeatures,
     "image1": image1.asset->url,
-    "additionalImages": additionalImages[].asset->url,
+    "aditionalImages": aditionalImages[].asset->url,
     price
   }`;
   
@@ -44,7 +44,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     parking,
     areac,
     "image1": image1.asset->url,
-   "additionalImages": additionalImages[].asset->url,
+   "aditionalImages": aditionalImages[].asset->url,
     amenities,
     price
   }`;
@@ -58,7 +58,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     areac,
     areal,
     "image1": image1.asset->url,
-    "additionalImages": additionalImages[].asset->url,
+    "aditionalImages": aditionalImages[].asset->url,
     price
   }`;
   
@@ -73,7 +73,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     rooms,
     amenities,
     "image1": image1.asset->url,
-    "additionalImages": additionalImages[].asset->url,
+    "aditionalImages": aditionalImages[].asset->url,
     price
   }`;
   
@@ -86,7 +86,7 @@ export const CASAS_QUERY = `*[_type == "casas" && defined(slug.current)] | order
     area,
     zoning,
     "image1": image1.asset->url,
-    "additionalImages": additionalImages[].asset->url,
+    "aditionalImages": aditionalImages[].asset->url,
     price
   }`;
   

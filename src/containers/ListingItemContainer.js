@@ -2,6 +2,25 @@ import React from "react";
 
 import { Listing } from "../components";
 
+const getPropertyComponent = (type) => {
+  if(type === "casas") return CasaListingItem;
+  if(type === "terreno") return TerrenoListingItem;
+  if(type === "galpon") return GalponListingItem;
+  if(type === "local") return LocalListingItem;
+  if(type === "cochera") return CocheraListingItem;
+  if(type === "departamento") return DepartamentoListingItem;
+
+  return null;
+}
+
+
+
+const ListingItemContainer = ({ featured, width }) => {  
+  const Component = getPropertyComponent(featured._type);
+
+  return <Component featured={featured} width={width} />
+};
+
 const CasaListingItem = ({featured,width}) => {
 
 
@@ -24,7 +43,8 @@ const CasaListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
             
@@ -32,7 +52,7 @@ const CasaListingItem = ({featured,width}) => {
           
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Detalles
             </Listing.Anchor>
           </Listing.Button>
@@ -75,15 +95,16 @@ const TerrenoListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+          <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
-          <Listing.Text>Mts 2 terreno: {featured.areal} mts2 </Listing.Text>
+          <Listing.Text>Mts 2 terreno: {featured.area} mts2 </Listing.Text>
           <Listing.Text>Zonificacion: {featured.zoning}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Details
             </Listing.Anchor>
           </Listing.Button>
@@ -125,7 +146,8 @@ const DepartamentoListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+          <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
@@ -133,7 +155,7 @@ const DepartamentoListingItem = ({featured,width}) => {
           <Listing.Text>Baños: {featured.beths}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Details
             </Listing.Anchor>
           </Listing.Button>
@@ -175,7 +197,8 @@ const CocheraListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+          <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
@@ -183,7 +206,7 @@ const CocheraListingItem = ({featured,width}) => {
           <Listing.Text>Largo * Ancho: {featured.dimensions} mts</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Details
             </Listing.Anchor>
           </Listing.Button>
@@ -225,7 +248,8 @@ const LocalListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+          <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
@@ -233,7 +257,7 @@ const LocalListingItem = ({featured,width}) => {
           <Listing.Text>Baños: {featured.beths}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Details
             </Listing.Anchor>
           </Listing.Button>
@@ -275,7 +299,8 @@ const GalponListingItem = ({featured,width}) => {
       <Listing.Bottom>
         <Listing.BottomItem>
           <Listing.Title>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+          <Listing.Text style={{ fontSize: "17px" }}>{featured._type}</Listing.Text>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
@@ -283,7 +308,7 @@ const GalponListingItem = ({featured,width}) => {
           <Listing.Text>Mts 2 Libres: {featured.areal}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
-            <Listing.Anchor to={`/property/${featured.id}`}>
+            <Listing.Anchor to={`/property/${featured._id}`}>
               Details
             </Listing.Anchor>
           </Listing.Button>
@@ -308,23 +333,5 @@ const GalponListingItem = ({featured,width}) => {
 }
 
 
-const getPropertyComponent = (type) => {
-  if(type === "casas") return CasaListingItem;
-  if(type === "terreno") return TerrenoListingItem;
-  if(type === "galpon") return GalponListingItem;
-  if(type === "local") return LocalListingItem;
-  if(type === "cochera") return CocheraListingItem;
-  if(type === "departamento") return DepartamentoListingItem;
-
-  return null;
-}
-
-
-
-const ListingItemContainer = ({ featured, width }) => {  
-  const Component = getPropertyComponent(featured._type);
-
-  return <Component featured={featured} width={width} />
-};
 
 export default ListingItemContainer;

@@ -12,6 +12,18 @@ export const cocheraType = defineType({
         validation: (rule) => rule.required(),
       }),
       defineField({
+        name: 'address',
+        type: 'string',
+        title: 'Dirección',
+        validation: (rule) => rule.required(),
+      }),
+      defineField({
+        name: 'province',
+        type: 'string',
+        title: 'Provincia',
+        validation: (rule) => rule.required(),
+      }),
+      defineField({
         name: 'location',
         type: 'string',
         title: 'Ubicación',
@@ -29,14 +41,29 @@ export const cocheraType = defineType({
         },
       }),
       defineField({
-        name: 'dimensions',
-        type: 'string',
-        title: 'Dimensiones (largo x ancho)',
+        name: 'areac',
+        type: 'number',
+        title: 'Metros cuadrados cubiertos',
+        validation: (rule) => rule.required(),
+      }),
+      defineField({
+        name: 'beths',
+        type: 'number',
+        title: 'Cantidad de baños',
       }),
       defineField({
         name: 'securityFeatures',
         type: 'array',
         title: 'Características de seguridad',
+        of: [{ type: 'string' }],
+        options: {
+          layout: 'tags',
+        },
+      }),
+      defineField({
+        name: 'amenities',
+        type: 'array',
+        title: 'Amenidades',
         of: [{ type: 'string' }],
         options: {
           layout: 'tags',
@@ -60,6 +87,33 @@ export const cocheraType = defineType({
         name: 'price',
         type: 'number',
         title: 'Precio'
+      }),
+      defineField({
+        name: 'patio',      
+        type: 'boolean',       
+        title: '¿Tiene patio?',
+        description: 'Indica si la propiedad tiene patio (Sí o No)',
+        initialValue: false,
+      }),      
+      defineField({
+        name: 'description',
+        type: 'string',
+        title: 'Descripción',
+        validation: (rule) => rule.required(),
+      }),
+      defineField({
+        name: 'slug',
+        type: 'slug',
+        title: 'Slug',
+        options: {
+          source: 'title',
+          maxLength: 96,
+        },
+      }),
+      defineField({
+        name: 'publishedAt',
+        type: 'datetime',
+        title: 'Fecha de publicación',
       }),
     ],
   });

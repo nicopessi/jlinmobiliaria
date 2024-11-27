@@ -2,13 +2,25 @@ import { defineField, defineType } from 'sanity';
 
 export const casasType = defineType({
   name: 'casas',
-  title: 'Casas',
+  title: 'Casa',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       type: 'string',
       title: 'Titulo',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'province',
+      type: 'string',
+      title: 'Provincia',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'address',
+      type: 'string',
+      title: 'Dirección',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -40,6 +52,15 @@ export const casasType = defineType({
       title: 'Metros cuadrados libres',
     }),
     defineField({
+      name: 'amenities',
+      type: 'array',
+      title: 'Amenidades',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
       name: 'image1',
       type: 'image',
       title: 'Imagen fachada',
@@ -48,7 +69,7 @@ export const casasType = defineType({
       },
     }),
     defineField({
-      name: 'additionalImages',
+      name: 'aditionalImages',
       type: 'array',
       title: 'Imágenes adicionales',
       of: [{ type: 'image' }],
@@ -58,7 +79,6 @@ export const casasType = defineType({
       type: 'number',
       title: 'Precio',
     }),
-    // Agregar el campo 'slug'
     defineField({
       name: 'slug',
       type: 'slug',
@@ -68,7 +88,35 @@ export const casasType = defineType({
         maxLength: 96,
       },
     }),
-
+    defineField({
+      name: 'securityFeatures',
+      type: 'array',
+      title: 'Características de seguridad',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
+      name: 'kitchen',      
+      type: 'boolean',       
+      title: '¿Tiene cocina?',
+      description: 'Indica si la propiedad tiene cocina (Sí o No)',
+      initialValue: false,
+    }),     
+    defineField({
+      name: 'patio',      
+      type: 'boolean',       
+      title: '¿Tiene patio?',
+      description: 'Indica si la propiedad tiene patio (Sí o No)',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'description',
+      type: 'string',
+      title: 'Descripción',
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',

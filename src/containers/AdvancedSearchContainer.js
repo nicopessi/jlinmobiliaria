@@ -22,7 +22,7 @@ const AdvancedSearchContainer = () => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedLocation, setSelectedLocation] = useState(""); // Ubicación seleccionada
   const [selectedRooms, setSelectedRooms] = useState(""); // Habitaciones seleccionadas
-  const [selectedBaths, setSelectedBaths] = useState(""); // Baños seleccionados, solo para casas y departamentos
+  const [selectedBeths, setSelectedBeths] = useState(""); // Baños seleccionados, solo para casas y departamentos
 const [selectedZoning, setSelectedZoning] = useState(""); // Zonificación seleccionada, solo para terrenos
 const [selectedCategory, setSelectedCategory] = useState(""); // Categoría seleccionada, solo para cocheras
   const [selectedPrice, setSelectedPrice] = useState(""); // Precio seleccionado
@@ -36,6 +36,7 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
       location: selectedLocation || null, // Asegúrate de pasar null si no se selecciona ubicación
       rooms: selectedRooms || null,
       price: selectedPrice || null,
+      beths: selectedBeths || null,
     };
   
     // Añadir filtros específicos para tipos de propiedad
@@ -44,7 +45,7 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
     }
   
     if (selectedType === "casas" || selectedType === "departamento") {
-      newFilters.baths = selectedBaths || null; // Baños solo para casas y departamentos
+      newFilters.beths = selectedBeths || null; // Baños solo para casas y departamentos
     }
   
     if (selectedType === "cochera") {
@@ -81,13 +82,13 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
     setSelectedType("");
     setSelectedLocation("");
     setSelectedRooms("");
-    setSelectedBaths("");
+    setSelectedBeths("");
     setSelectedZoning("");
     setSelectedCategory("");
     setSelectedPrice("");
     setPriceRange(0);
   
-    // Opcionalmente, también puedes restablecer los filtros en el contexto
+    
     setFilters({}); // Esto depende de cómo esté implementado tu contexto
   };
 
@@ -110,8 +111,10 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
   const areac = [...new Set(filteredProperties.map((prop) => prop.areac))].sort(
     (a, b) => a - b
   );
+ 
+  const typeOptions = [...new Set(filteredProperties.map((prop) => prop.type))]
+  .sort((a, b) => a.localeCompare(b));
 
-  const typeOptions = [...new Set(filteredProperties.map((prop) => prop.type))];
   const zoningOptions = [
     ...new Set(filteredProperties.map((prop) => prop.zoning)),
   ];
@@ -140,7 +143,7 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
             </Form.Select>
           </Form.FormGroup>
 
-          {/* Campo Ubicación (Visible solo si hay un tipo seleccionado) */}
+          
           {selectedType && (
             <Form.FormGroup>
               <Form.Select
@@ -178,14 +181,17 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
                 </Form.Select>
               </Form.FormGroup>
               <Form.FormGroup>
-                <Form.Select>
-                  <Form.Option value="" disabled>
-                    Baños
-                  </Form.Option>
-                  {beths.map((beth) => (
-                    <Form.Option key={beth} value={beth}>
-                      {beth}
-                    </Form.Option>
+              <Form.Select
+    value={selectedBeths} // Conectado al estado
+    onChange={(e) => setSelectedBeths(e.target.value)} // Actualiza el estado cuando cambia
+  >
+    <Form.Option value="" disabled>
+       Baños
+    </Form.Option>
+    {beths.map((beth) => (
+      <Form.Option key={beth} value={beth}>
+        {beth}
+      </Form.Option>
                   ))}
                 </Form.Select>
               </Form.FormGroup>
@@ -194,7 +200,10 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
 
           {selectedType === "cochera" && (
             <Form.FormGroup>
-              <Form.Select>
+              <Form.Select
+  value={selectedType} 
+  onChange={(e) => setSelectedType(e.target.value)} 
+>
                 <Form.Option value="" disabled>
                   Tipo
                 </Form.Option>
@@ -209,14 +218,17 @@ const [selectedCategory, setSelectedCategory] = useState(""); // Categoría sele
 
           {selectedType === "terreno" && (
             <Form.FormGroup>
-              <Form.Select>
-                <Form.Option value="" disabled>
-                  Zonificación
-                </Form.Option>
-                {zoningOptions.map((zoning) => (
-                  <Form.Option key={zoning} value={zoning}>
-                    {zoning}
-                  </Form.Option>
+              <Form.Select
+  value={selectedZoning}
+  onChange={(e) => setSelectedZoning(e.target.value)}
+>
+  <Form.Option value="" disabled>
+    Zonificación
+  </Form.Option>
+  {zoningOptions.map((zoning) => (
+    <Form.Option key={zoning} value={zoning}>
+      {zoning}
+    </Form.Option>
                 ))}
               </Form.Select>
             </Form.FormGroup>

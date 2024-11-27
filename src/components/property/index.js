@@ -40,6 +40,7 @@ import {
   FeaturedInfo,
 } from "./styles/property";
 
+
 const Property = ({ children, ...restProps }) => {
   return <Container {...restProps}>{children}</Container>;
 };
@@ -85,12 +86,18 @@ Property.Right = ({ children, ...restProps }) => {
 Property.Gallery = ({ children, ...restProps }) => {
   return <Gallery {...restProps}>{children}</Gallery>;
 };
+
 Property.ImageContainer = ({ children, ...restProps }) => {
   return <ImageContainer {...restProps}>{children}</ImageContainer>;
 };
-Property.Image = ({ children, source, ...restProps }) => {
-  return <Image src={`/images/houses/${source}`} {...restProps} />;
+
+
+Property.Image = ({ source, ...restProps }) => {
+  return source ? <Image src={source} {...restProps} /> : null;
 };
+
+
+
 Property.Info = function PropertyInfo({ children, ...restProps }) {
   return <Info {...restProps}>{children}</Info>;
 };

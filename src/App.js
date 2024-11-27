@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from "./pages";
+import { Home, PropertyDetails } from "./pages";
 
 
 const App = () => {
@@ -10,10 +10,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        
-        
-        
-        
+        <Route path="/property/:id" element={<PropertyDetails />} />
       </Routes>
     </Router>
   );

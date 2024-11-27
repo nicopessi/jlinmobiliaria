@@ -102,23 +102,25 @@ export const Gallery = styled.div`
   box-shadow: var(--primary-box-shadow);
   padding: 6px;
   display: flex;
-  width: 100%;
+  flex-wrap: wrap; /* Permite que las imágenes se distribuyan en filas */
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
-  }
+  gap: 8px; /* Espaciado entre elementos */
+
 `;
 export const ImageContainer = styled.div`
-  width: 49.5%;
+  width: 25%;
+  height: 250px;
+  margin: 0.5%; /* Espaciado entre imágenes */
   @media only screen and (max-width: 600px) {
-    width: 100%;
+    width: 48%; /* Ajuste para pantallas más pequeñas */
   }
+
 `;
 export const Image = styled.img`
-  width: 100%;
-  object-fit: contain;
+   width: 100%;
+  height: 250px; /* Asegura que ocupe todo el contenedor */
+  object-fit: cover; /* Recorta y centra la imagen */
   border-radius: 3px;
   opacity: 0.9;
   cursor: pointer;
