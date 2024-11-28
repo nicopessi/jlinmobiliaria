@@ -49,7 +49,8 @@ const CasaListingItem = ({featured,width}) => {
             </Listing.Anchor>
             
           </Listing.Title>
-          
+          <Listing.Text>Habitaciones: {featured.rooms} </Listing.Text>
+          <Listing.Text>Baños: {featured.beths}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured._id}`}>
@@ -100,7 +101,7 @@ const TerrenoListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
-          <Listing.Text>Mts 2 terreno: {featured.area} mts2 </Listing.Text>
+          <Listing.Text>Dimensiones: {featured.area} Mts² </Listing.Text>
           <Listing.Text>Zonificacion: {featured.zoning}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
@@ -203,7 +204,7 @@ const CocheraListingItem = ({featured,width}) => {
             </Listing.Anchor>
           </Listing.Title>
           <Listing.Text>Tipo de cochera: {featured.type} </Listing.Text>
-          <Listing.Text>Largo * Ancho: {featured.dimensions} mts</Listing.Text>
+          <Listing.Text>Dimensiones: {featured.areac} Mts²</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured._id}`}>
@@ -254,7 +255,7 @@ const LocalListingItem = ({featured,width}) => {
             </Listing.Anchor>
           </Listing.Title>
           <Listing.Text>Ambientes: {featured.rooms} </Listing.Text>
-          <Listing.Text>Baños: {featured.beths}</Listing.Text>
+          <Listing.Text>Baños: {featured.beths || "No"}</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured._id}`}>
@@ -304,8 +305,8 @@ const GalponListingItem = ({featured,width}) => {
               {featured.title}
             </Listing.Anchor>
           </Listing.Title>
-          <Listing.Text>Mts 2 Cubiertos: {featured.areac} </Listing.Text>
-          <Listing.Text>Mts 2 Libres: {featured.areal}</Listing.Text>
+          <Listing.Text>Dimensiones cubiertos: {featured.areac} Mts² </Listing.Text>
+          <Listing.Text>Dimensiones sin cubiertos: {featured.areal} Mts²</Listing.Text>
           <Listing.Price>U$D {featured.price}</Listing.Price>
           <Listing.Button>
             <Listing.Anchor to={`/property/${featured._id}`}>

@@ -70,7 +70,7 @@ const Listing = () => {
                     );
                   })
                 ) : (
-                  <p>No properties found.</p> // En caso de no encontrar propiedades que coincidan
+                  <p>No se encontraron propiedades</p> // En caso de no encontrar propiedades que coincidan
                 )}
               </Section.Content>
 

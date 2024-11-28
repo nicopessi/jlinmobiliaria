@@ -1,0 +1,20 @@
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px; /* Distancia desde el borde inferior */
+    right: 20px; /* Distancia desde el borde derecho */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+  }
+  
+  .whatsapp-button img {
+    width: 60px; /* Tamaño del icono */
+    height: 60px;
+    border-radius: 50%; /* Hacer el icono redondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar una sombra */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    transition: transform 0.3s ease; /* Animación al pasar el ratón */
+  }
+  
+  .whatsapp-button img:hover {
+    transform: scale(1.1); /* Agrandar el icono al pasar el ratón */
+  }
